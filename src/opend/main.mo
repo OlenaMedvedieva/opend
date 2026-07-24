@@ -1,4 +1,6 @@
 import NFT "../NFT/nft";
+import Principal "mo:base/Principal";
+
 
 actor OpenD {
 
