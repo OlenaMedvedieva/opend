@@ -5,11 +5,11 @@ import homeImage from "../../assets/home-img.png";
 import Minter from "./Minter";
 import Gallery from "./Gallery";
 import{ opend } from "../../../declarations/opend";
-import  CURRENT_USER_ID  from "../index";
+import  { Principal } from "@dfinity/principal";
 
 function Header() {
   const [userOwnedGallery, setUserOwnedGallery] = useState();
-
+  const CURRENT_USER_ID = Principal.fromText("2vxsx-fae");
   async function getNFTs(){
    const userNFTs =  await opend.getOwnedNFTs(CURRENT_USER_ID);
    console.log(userNFTs);

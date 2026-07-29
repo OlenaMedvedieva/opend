@@ -1,5 +1,5 @@
 import React,{ useState, useEffect }from "react";
-import Item from "./Item";
+import ItemComponent from "./Item";
 
 function Gallery(props) {
 const [items, setItems] = useState();
@@ -8,7 +8,7 @@ function fetchNFTs(){
   if (props.ids != undefined) {
     setItems(
       props.ids.map((NFTId) => (
-        <Item id={NFTId} key={NFTId.toText()} />
+        <ItemComponent id={NFTId} key={NFTId.toText()} />
       )
       )
   );
