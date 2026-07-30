@@ -10,6 +10,7 @@ import  { Principal } from "@dfinity/principal";
 function Header() {
   const [userOwnedGallery, setUserOwnedGallery] = useState();
   const CURRENT_USER_ID = Principal.fromText("2vxsx-fae");
+  console.log("CURRENT USER:", CURRENT_USER_ID.toText());
   async function getNFTs(){
    const userNFTs =  await opend.getOwnedNFTs(CURRENT_USER_ID);
    console.log(userNFTs);
