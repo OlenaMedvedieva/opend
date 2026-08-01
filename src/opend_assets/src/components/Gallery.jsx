@@ -3,6 +3,7 @@ import ItemComponent from "./Item";
 
 function Gallery(props) {
 const [items, setItems] = useState();
+console.log("Gallery IDs:", props.ids);
 
 function fetchNFTs(){
   if (props.ids != undefined) {

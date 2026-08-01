@@ -4,7 +4,7 @@ import NFTActorClass "../NFT/nft";
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
 import List "mo:base/List";
-
+import Iter "mo:base/Iter";
 actor OpenD {
     private type Listing = {
         itemOwner: Principal;
@@ -34,8 +34,7 @@ actor OpenD {
 
         Debug.print(debug_show(Cycles.balance()));
 
-        Cycles.add(100_500_000_000);
-
+        Cycles.add(50_000_000_000);
         let newNFT = await NFTActorClass.NFT(name, owner, imgData);
 
         Debug.print(debug_show(Cycles.balance()));
@@ -66,7 +65,10 @@ actor OpenD {
 
         return List.toArray(ownedNFTs);
     };
-
+public query func getListedNFTs() : async [Principal] {
+    let ids = Iter.toArray(mapOfListings.keys());
+    return ids;
+};
 public shared (msg) func listItem(id: Principal, price: Nat) : async Text {
 
     var item : NFTActorClass.NFT = switch(mapOfNFTs.get(id)) {

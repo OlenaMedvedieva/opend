@@ -9,6 +9,7 @@ import  { Principal } from "@dfinity/principal";
 
 function Header() {
   const [userOwnedGallery, setUserOwnedGallery] = useState();
+  const [listingGallery, setListingGallery] = useState();
   const CURRENT_USER_ID = Principal.fromText("2vxsx-fae");
   console.log("CURRENT USER:", CURRENT_USER_ID.toText());
   async function getNFTs(){
@@ -18,8 +19,14 @@ function Header() {
     <Gallery
      title="My NFTs" 
      ids = {userNFTs} 
-     />
-    );
+     /> );
+const listedNFTIds = await opend.getListedNFTs();
+console.log(listedNFTIds);
+setListingGallery(
+  <Gallery
+   title="Discover" 
+   ids = {listedNFTIds} 
+   /> );
   };
 
   useEffect(() => {
@@ -63,7 +70,7 @@ function Header() {
   </Route>
 
   <Route exact path="/discover">
-    <h1>Discover</h1>
+    {listingGallery}
   </Route>
 
   <Route exact path="/minter">
