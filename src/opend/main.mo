@@ -5,6 +5,7 @@ import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
 import List "mo:base/List";
 import Iter "mo:base/Iter";
+
 actor OpenD {
     private type Listing = {
         itemOwner: Principal;
@@ -34,7 +35,8 @@ actor OpenD {
 
         Debug.print(debug_show(Cycles.balance()));
 
-        Cycles.add(50_000_000_000);
+           Cycles.add(50_000_000_000);
+
         let newNFT = await NFTActorClass.NFT(name, owner, imgData);
 
         Debug.print(debug_show(Cycles.balance()));
@@ -65,10 +67,13 @@ actor OpenD {
 
         return List.toArray(ownedNFTs);
     };
-public query func getListedNFTs() : async [Principal] {
-    let ids = Iter.toArray(mapOfListings.keys());
-    return ids;
-};
+
+     public query func getListedNFTs() : async [Principal] {
+        
+      let  ids = Iter.toArray(mapOfListings.keys()); 
+       return ids;
+       };
+
 public shared (msg) func listItem(id: Principal, price: Nat) : async Text {
 
     var item : NFTActorClass.NFT = switch(mapOfNFTs.get(id)) {
@@ -106,4 +111,24 @@ public query func isListed(id:Principal) : async Bool {
     };
 
 };
+public query func getOriginalOwner(id:Principal) : async Principal {
+    var listing : Listing = switch(mapOfListings.get(id)) {
+        case null return Principal.fromText("2vxsx-fae");
+        case (?result) result; 
+    };
+
+    
+    return listing.itemOwner;
+    };
+public query func getListedNFTPrice(id : Principal) : async Nat {
+    switch (mapOfListings.get(id)) {
+        case (?listing) {
+            listing.itemPrice;
+        };
+        case null {
+            0;
+        };
+    };
+};
+
 };

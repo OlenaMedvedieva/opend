@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Actor, HttpAgent } from "@dfinity/agent";
 import { idlFactory } from "../../../declarations/nft";
@@ -6,203 +7,363 @@ import { opend } from "../../../declarations/opend";
 import { Principal } from "@dfinity/principal";
 
 function Item(props) {
-const [name, setName] = React.useState("");
-const [owner, setOwner] = React.useState("");
-const [image, setImage] = React.useState("");
-const [button, setButton] = React.useState(null);
-const [snowpriceInput, setSnowPriceInput] = React.useState(false);
-const [blur, setBlur] = React.useState({});
-const [listed, setListed] = React.useState(false);
-const [loaderHidden, setLoaderHidden] = React.useState(true);
-const [price, setPrice] = React.useState("");
-const NFTActor = React.useRef(null);
+  const [name, setName] = React.useState("");
+  const [owner, setOwner] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [button, setButton] = React.useState(null);
+  const [showPriceInput, setShowPriceInput] = React.useState(false);
+  const [blur, setBlur] = React.useState({});
+  const [listed, setListed] = React.useState(false);
+  const [price, setPrice] = React.useState("");
 
-async function loadNFT() {
-try {
-const id = props.id;
+  const NFTActor = React.useRef(null);
+  const priceRef = React.useRef(null);
+  async function loadNFT() {
+    try {
+      const id = props.id;
 
+      const nftPrincipal =
+        typeof id === "string"
+          ? Principal.fromText(id)
+          : id;
 
-  const agent = new HttpAgent({
-    host: "http://127.0.0.1:8000",
-  });
+      console.log(
+        "ITEM ID:",
+        nftPrincipal.toText()
+      );
 
-  await agent.fetchRootKey();
+      console.log(
+        "ITEM ROLE:",
+        props.role
+      );
 
-  NFTActor.current = Actor.createActor(idlFactory, {
-    agent,
-    canisterId: id,
-  });
+      const agent = new HttpAgent({
+        host: "http://127.0.0.1:8000",
+      });
 
-  const nftName = await NFTActor.current.getName();
-  const nftOwner = await NFTActor.current.getOwner();
-  const imageData = await NFTActor.current.getAsset();
+      await agent.fetchRootKey();
 
-  console.log("NFT OWNER:", nftOwner.toText());
+      NFTActor.current = Actor.createActor(
+        idlFactory,
+        {
+          agent,
+          canisterId: nftPrincipal,
+        }
+      );
 
-  const imageContent = new Uint8Array(imageData);
+      const nftName =
+        await NFTActor.current.getName();
 
-  const imageUrl = URL.createObjectURL(
-    new Blob([imageContent], {
-      type: "image/png",
-    })
+      const nftOwner =
+        await NFTActor.current.getOwner();
+
+      const imageData =
+        await NFTActor.current.getAsset();
+
+      console.log(
+        "NFT OWNER:",
+        nftOwner.toText()
+      );
+
+      const imageContent =
+        new Uint8Array(imageData);
+
+      const imageUrl =
+        URL.createObjectURL(
+          new Blob(
+            [imageContent],
+            {
+              type: "image/png",
+            }
+          )
+        );
+
+      setName(nftName);
+      setOwner(nftOwner.toText());
+      setImage(imageUrl);
+
+      // =========================
+      // MY NFTs
+      // =========================
+
+      if (props.role === "collection") {
+         const nftIsListed =
+          await opend.isListed(
+            nftPrincipal
+          );
+
+       console.log("ROLE:", props.role);
+      console.log("NFT OWNER:", nftOwner.toText());
+      console.log("IS LISTED:", nftIsListed); 
+
+        
+
+        if (nftIsListed) {
+          setOwner("OpenD");
+          setListed(true);
+
+          setBlur({
+            filter: "blur(4px)",
+          });
+
+          setButton(null);
+          setShowPriceInput(false);
+
+        } else {
+          setListed(false);
+          setBlur({});
+
+          setButton(
+            <Button
+              handleClick={handleSell}
+              text="Sell"
+            />
+          );
+        }
+      }
+
+      // =========================
+      // DISCOVER
+      // =========================
+
+     else if (props.role === "discover") {
+  console.log("DISCOVER ROLE - SHOW BUY");
+
+  const listedPrice =
+    await opend.getListedNFTPrice(nftPrincipal);
+
+  console.log(
+    "DISCOVER NFT ID:",
+    nftPrincipal.toText()
   );
 
-  setName(nftName);
-  setOwner(nftOwner.toText());
-  setImage(imageUrl);
+  console.log(
+    "NFT PRICE FROM CANISTER:",
+    listedPrice.toString()
+  );
 
+  setPrice(listedPrice.toString());
 
-const nftIsListed = await opend.isListed(
-  Principal.fromText(props.id)
-);
-console.log("NFT ID:", props.id);
-console.log("IS NFT LISTED:", nftIsListed);
-
-if (nftIsListed) {
-  setOwner("OpenD");
-  setPrice("");
-  setListed(true);
-  setBlur({ filter: "blur(4px)" });
-  setButton(null);
-  setSnowPriceInput(false);
-} else if (nftOwner.toText() !== "OpenD") {
-  setListed(false);
   setButton(
     <Button
-      handleClick={handleSell}
-      text={"Sell"}
+      handleClick={handleBuy}
+      text="Buy"
     />
   );
 }
-} catch (error) {
-  console.error("NFT loading error:", error);
-}
 
+    } catch (error) {
+      console.error(
+        "NFT loading error:",
+        error
+      );
+    }
+  }
 
-}
+  React.useEffect(() => {
+    if (props.id) {
+      loadNFT();
+    }
+  }, [props.id]);
 
-React.useEffect(() => {
-if (props.id) {
-loadNFT();
-}
-}, [props.id]);
+  // =========================
+  // SELL
+  // =========================
 
-function handleSell() {
-console.log("Sell clicked");
+  function handleSell() {
+    console.log(
+      "Sell clicked"
+    );
 
-setSnowPriceInput(true);
+    setShowPriceInput(true);
 
-setButton(
-  <Button
-    handleClick={sellItem}
-    text={"Confirm"}
-  />
-);
+    setButton(
+      <Button
+        handleClick={sellItem}
+        text="Confirm"
+      />
+    );
+  }
 
+  async function sellItem() {
+    try {
+      setBlur({
+        filter: "blur(4px)",
+      });
 
-}
-
-async function sellItem() {
-try {
-setBlur({ filter: "blur(4px)" });
-setLoaderHidden(false);
-
-
-  console.log("set price = " + price);
-
-  const nftPrincipal =
-    typeof props.id === "string"
-      ? Principal.fromText(props.id)
-      : props.id;
-
-  const listingResult = await opend.listItem(
-    nftPrincipal,
-    Number(price)
-  );
-
-  console.log("listing result: ", listingResult);
-
-  if (
-    listingResult === "Succes" ||
-    listingResult === "Success"
-  ) {
-    const openDId = await opend.getOpenDCanisterID();
-
-    const transferResult =
-      await NFTActor.current.transferOwnership(openDId);
-
-    console.log("transfer: ", transferResult);
-
-    if (
-      transferResult === "Succes" ||
-      transferResult === "Success"
-    ) {
       console.log(
-        "TRANSFER SUCCESS — HIDING BUTTON AND PRICE"
+        "set price =",
+        price
       );
 
-      setLoaderHidden(true);
-      setButton(null);
-      setSnowPriceInput(false);
-      setPrice("");
-      setOwner("OpenD");
-      setListed(true);
-    } else {
-      console.log("Transfer failed:", transferResult);
+      const nftPrincipal =
+        typeof props.id === "string"
+          ? Principal.fromText(
+              props.id
+            )
+          : props.id;
+
+      const listingResult =
+        await opend.listItem(
+          nftPrincipal,
+          Number(price)
+        );
+
+      console.log(
+        "listing result:",
+        listingResult
+      );
+
+      if (
+        listingResult === "Success" ||
+        listingResult === "Succes"
+      ) {
+        const openDId =
+          await opend.getOpenDCanisterID();
+
+        const transferResult =
+          await NFTActor.current.transferOwnership(
+            openDId
+          );
+
+        console.log(
+          "transfer:",
+          transferResult
+        );
+
+        if (
+          transferResult === "Success" ||
+          transferResult === "Succes"
+        ) {
+          setButton(null);
+
+          setShowPriceInput(false);
+
+          setOwner("OpenD");
+
+          setListed(true);
+
+          console.log(
+            "TRANSFER SUCCESS"
+          );
+
+        } else {
+          console.log(
+            "Transfer failed:",
+            transferResult
+          );
+
+          setBlur({});
+        }
+
+      } else {
+        console.log(
+          "Listing failed:",
+          listingResult
+        );
+
+        setBlur({});
+      }
+
+    } catch (error) {
+      console.error(
+        "Selling NFT error:",
+        error
+      );
+
       setBlur({});
-      setLoaderHidden(true);
     }
-  } else {
-    console.log("Listing failed:", listingResult);
-    setBlur({});
-    setLoaderHidden(true);
   }
-} catch (error) {
-  console.error("Selling NFT error:", error);
-  setBlur({});
-  setLoaderHidden(true);
+
+  // =========================
+  // BUY
+  // =========================
+async function handleBuy() {
+  console.log("Buy was triggered");
+
+  console.log(
+    "NFT ID:",
+    props.id.toText
+      ? props.id.toText()
+      : props.id
+  );
+
+  console.log(
+    "NFT PRICE:",
+    priceRef.current
+  );
 }
 
+  return (
+    <div className="disGrid-item">
 
-}
+      <div className="disPaper-root disCard-root makeStyles-root-17 disPaper-elevation1 disPaper-rounded">
 
-return (
-   <div className="disGrid-item"> <div className="disPaper-root disCard-root makeStyles-root-17 disPaper-elevation1 disPaper-rounded">
-        {image && ( <img
-         className="disCardMedia-root makeStyles-image-19 disCardMedia-media disCardMedia-img"
-         src={image}
-         style={blur}
-         alt={name}
-       />
-)}
+        {image && (
+          <img
+            className="disCardMedia-root makeStyles-image-19 disCardMedia-media disCardMedia-img"
+            src={image}
+            style={blur}
+            alt={name}
+          />
+        )}
 
+        <div className="disCardContent-root">
 
-    <div className="disCardContent-root">
-      <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
-        {name} {listed &&<span>Listed</span>}
-      </h2>
+          {/* PRICE */}
 
-      <p className="disTypography-root makeStyles-bodyText-24 disTypography-body2 disTypography-colorTextSecondary">
-        Owner: {owner}
-       
-      </p>
+          {props.role === "discover" && (
+            <div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
+              <span className="disChip-label">
+                {price} DANG
+              </span>
+            </div>
+          )}
 
-      {snowpriceInput && (
-        <input
-          placeholder="Price in DANG"
-          type="number"
-          className="price-input"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      )}
+          {/* NAME */}
 
-      {button}
+          <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
+            {name}
+
+            {listed && (
+              <span>
+                {" "}
+                Listed
+              </span>
+            )}
+          </h2>
+
+          {/* OWNER */}
+
+          <p className="disTypography-root makeStyles-bodyText-24 disTypography-body2 disTypography-colorTextSecondary">
+            Owner: {owner}
+          </p>
+
+          {/* SELL PRICE INPUT */}
+
+          {showPriceInput && (
+            <input
+              placeholder="Price in DANG"
+              type="number"
+              className="price-input"
+              value={price}
+              onChange={(e) =>
+                setPrice(
+                  e.target.value
+                )
+              }
+            />
+          )}
+
+          {/* BUTTON */}
+
+          {button}
+
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-);
+  );
 }
 
 export default Item;
+

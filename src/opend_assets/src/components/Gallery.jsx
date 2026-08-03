@@ -9,15 +9,17 @@ function fetchNFTs(){
   if (props.ids != undefined) {
     setItems(
       props.ids.map((NFTId) => (
-        <ItemComponent id={NFTId} key={NFTId.toText()} />
-      )
+        <ItemComponent id={NFTId} 
+        key={NFTId.toText()} role={props.role} />)
+      
+      
       )
   );
 }}
 
 useEffect(() => {
   fetchNFTs();
-}, []);
+}, [props.ids,props.role]);
 
   return (
     <div className="gallery-view">
