@@ -75,7 +75,8 @@ actor OpenD {
        };
 
 public shared (msg) func listItem(id: Principal, price: Nat) : async Text {
-
+    
+    Debug.print("LISTING PRICE: " # debug_show(price));
     var item : NFTActorClass.NFT = switch(mapOfNFTs.get(id)) {
         case null return "NFT does not exist.";
         case (?result) result; 
@@ -131,4 +132,41 @@ public query func getListedNFTPrice(id : Principal) : async Nat {
     };
 };
 
+
+public shared (msg) func updateListingPrice(id : Principal, newPrice : Nat) : async Text {
+    let openDId = Principal.fromActor(OpenD);
+
+    switch (mapOfListings.get(id)) {
+        case null {
+            let item : NFTActorClass.NFT = switch (mapOfNFTs.get(id)) {
+                case null return "NFT does not exist.";
+                case (?result) result;
+            };
+
+            let owner = await item.getOwner();
+
+            if (Principal.equal(owner, openDId)) {
+                let newListing : Listing = {
+                    itemOwner = Principal.fromText("2vxsx-fae");
+                    itemPrice = newPrice;
+                };
+
+                mapOfListings.put(id, newListing);
+                return "Success";
+            } else {
+                return "NFT is not owned by OpenD.";
+            };
+        };
+
+        case (?listing) {
+            let updatedListing : Listing = {
+                itemOwner = listing.itemOwner;
+                itemPrice = newPrice;
+            };
+
+            mapOfListings.put(id, updatedListing);
+            return "Success";
+        };
+    };
+};
 };

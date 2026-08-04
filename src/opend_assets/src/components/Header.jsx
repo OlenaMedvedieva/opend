@@ -22,25 +22,16 @@ function Header() {
 
       console.log("USER NFTS:", userNFTs);
 
-      setUserOwnedGallery(
-        <Gallery
-          title="My NFTs"
-          ids={userNFTs}
-          role="collection"
-        />
-      );
+      setUserOwnedGallery(userNFTs);
+        
 
       const listedNFTIds = await opend.getListedNFTs();
 
       console.log("LISTED NFTS:", listedNFTIds);
 
-      setListingGallery(
-        <Gallery
-          title="Discover"
-          ids={listedNFTIds}
-          role="discover"
-        />
-      );
+      setListingGallery(listedNFTIds);
+       
+      
     } catch (error) {
       console.error("Error loading NFTs:", error);
     }
@@ -105,17 +96,24 @@ function Header() {
           />
         </Route>
 
-        <Route exact path="/discover">
-          {listingGallery}
-        </Route>
-
+      <Route exact path="/discover">
+  <Gallery
+    title="Discover"
+    ids={listingGallery}
+    role="discover"
+  />
+</Route>
         <Route exact path="/minter">
           <Minter />
         </Route>
 
-        <Route exact path="/collection">
-          {userOwnedGallery}
-        </Route>
+       <Route exact path="/collection">
+  <Gallery
+    title="My NFTs"
+    ids={userOwnedGallery}
+    role="collection"
+  />
+</Route>
 
       </Switch>
     </BrowserRouter>

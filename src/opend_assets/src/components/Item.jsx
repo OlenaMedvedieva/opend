@@ -10,14 +10,29 @@ function Item(props) {
   const [name, setName] = React.useState("");
   const [owner, setOwner] = React.useState("");
   const [image, setImage] = React.useState("");
-  const [button, setButton] = React.useState(null);
-  const [showPriceInput, setShowPriceInput] = React.useState(false);
-  const [blur, setBlur] = React.useState({});
-  const [listed, setListed] = React.useState(false);
-  const [price, setPrice] = React.useState("");
 
-  const NFTActor = React.useRef(null);
-  const priceRef = React.useRef(null);
+  const [showPriceInput, setShowPriceInput] =
+    React.useState(false);
+
+  const [blur, setBlur] = React.useState({});
+
+  const [listed, setListed] =
+    React.useState(false);
+
+  const [isListed, setIsListed] =
+    React.useState(false);
+
+  const [price, setPrice] =
+    React.useState("");
+
+  const NFTActor =
+    React.useRef(null);
+
+
+  // =========================
+  // LOAD NFT
+  // =========================
+
   async function loadNFT() {
     try {
       const id = props.id;
@@ -37,19 +52,31 @@ function Item(props) {
         props.role
       );
 
+
+      // =========================
+      // CREATE NFT ACTOR
+      // =========================
+
       const agent = new HttpAgent({
         host: "http://127.0.0.1:8000",
       });
 
       await agent.fetchRootKey();
 
-      NFTActor.current = Actor.createActor(
-        idlFactory,
-        {
-          agent,
-          canisterId: nftPrincipal,
-        }
-      );
+      NFTActor.current =
+        Actor.createActor(
+          idlFactory,
+          {
+            agent,
+            canisterId:
+              nftPrincipal,
+          }
+        );
+
+
+      // =========================
+      // GET NFT DATA
+      // =========================
 
       const nftName =
         await NFTActor.current.getName();
@@ -60,141 +87,277 @@ function Item(props) {
       const imageData =
         await NFTActor.current.getAsset();
 
+
       console.log(
         "NFT OWNER:",
         nftOwner.toText()
       );
 
+
+      // =========================
+      // IMAGE
+      // =========================
+
       const imageContent =
-        new Uint8Array(imageData);
+        new Uint8Array(
+          imageData
+        );
 
       const imageUrl =
         URL.createObjectURL(
           new Blob(
             [imageContent],
             {
-              type: "image/png",
+              type:
+                "image/png",
             }
           )
         );
 
+
       setName(nftName);
-      setOwner(nftOwner.toText());
+
+      setOwner(
+        nftOwner.toText()
+      );
+
       setImage(imageUrl);
 
+
       // =========================
-      // MY NFTs
+      // CHECK LISTED STATUS
       // =========================
 
-      if (props.role === "collection") {
-         const nftIsListed =
-          await opend.isListed(
-            nftPrincipal
+      const nftIsListed =
+        await opend.isListed(
+          nftPrincipal
+        );
+
+      console.log(
+        "IS LISTED:",
+        nftIsListed
+      );
+
+
+      setIsListed(
+        nftIsListed
+      );
+
+
+      // =========================
+      // COLLECTION
+      // =========================
+
+      if (
+        props.role ===
+        "collection"
+      ) {
+
+        console.log(
+          "COLLECTION ROLE"
+        );
+
+
+        if (
+          nftIsListed
+        ) {
+
+          // NFT already listed
+
+          console.log(
+            "NFT IS LISTED"
           );
 
-       console.log("ROLE:", props.role);
-      console.log("NFT OWNER:", nftOwner.toText());
-      console.log("IS LISTED:", nftIsListed); 
-
-        
-
-        if (nftIsListed) {
-          setOwner("OpenD");
           setListed(true);
 
+          setOwner(
+            "OpenD"
+          );
+
           setBlur({
-            filter: "blur(4px)",
+            filter:
+              "blur(4px)",
           });
 
-          setButton(null);
-          setShowPriceInput(false);
+          // No price input
+          setShowPriceInput(
+            false
+          );
 
         } else {
+
+          // NFT is available
+          // to sell
+
+          console.log(
+            "NFT IS NOT LISTED"
+          );
+
           setListed(false);
+
           setBlur({});
 
-          setButton(
-            <Button
-              handleClick={handleSell}
-              text="Sell"
-            />
+          setShowPriceInput(
+            false
           );
         }
       }
+
 
       // =========================
       // DISCOVER
       // =========================
 
-     else if (props.role === "discover") {
-  console.log("DISCOVER ROLE - SHOW BUY");
+      if (
+        props.role ===
+        "discover"
+      ) {
 
-  const listedPrice =
-    await opend.getListedNFTPrice(nftPrincipal);
+        console.log(
+          "DISCOVER ROLE"
+        );
 
-  console.log(
-    "DISCOVER NFT ID:",
-    nftPrincipal.toText()
-  );
 
-  console.log(
-    "NFT PRICE FROM CANISTER:",
-    listedPrice.toString()
-  );
+        if (
+          nftIsListed
+        ) {
 
-  setPrice(listedPrice.toString());
+          const listedPrice =
+            await opend.getListedNFTPrice(
+              nftPrincipal
+            );
 
-  setButton(
-    <Button
-      handleClick={handleBuy}
-      text="Buy"
-    />
-  );
-}
+
+          console.log(
+            "NFT PRICE FROM CANISTER:",
+            listedPrice.toString()
+          );
+
+
+          setPrice(
+            listedPrice.toString()
+          );
+
+          setShowPriceInput(
+            false
+          );
+
+        } else {
+
+          console.log(
+            "NFT NOT LISTED"
+          );
+
+          setPrice("");
+
+          setShowPriceInput(
+            false
+          );
+        }
+      }
 
     } catch (error) {
+
       console.error(
         "NFT loading error:",
         error
       );
+
     }
   }
 
-  React.useEffect(() => {
-    if (props.id) {
-      loadNFT();
-    }
-  }, [props.id]);
 
   // =========================
-  // SELL
+  // USE EFFECT
+  // =========================
+
+  React.useEffect(() => {
+
+    if (
+      props.id
+    ) {
+
+      loadNFT();
+
+    }
+
+  }, [
+    props.id,
+    props.role
+  ]);
+
+
+  // =========================
+  // SELL BUTTON
   // =========================
 
   function handleSell() {
+
     console.log(
-      "Sell clicked"
+      "========== SELL CLICKED =========="
     );
 
-    setShowPriceInput(true);
-
-    setButton(
-      <Button
-        handleClick={sellItem}
-        text="Confirm"
-      />
+    console.log(
+      "NFT ID:",
+      props.id
     );
+
+    console.log(
+      "ROLE:",
+      props.role
+    );
+
+
+    // Open price input
+
+    setShowPriceInput(
+      true
+    );
+
   }
 
+
+  // =========================
+  // LIST NFT
+  // =========================
+
   async function sellItem() {
-    try {
-      setBlur({
-        filter: "blur(4px)",
-      });
+
+    console.log(
+      "========== CONFIRM SELL =========="
+    );
+
+    console.log(
+      "PRICE:",
+      price
+    );
+
+
+    // =========================
+    // CHECK PRICE
+    // =========================
+
+    if (
+      price === "" ||
+      Number(price) <= 0
+    ) {
 
       console.log(
-        "set price =",
-        price
+        "Please enter a valid price"
       );
+
+      return;
+
+    }
+
+
+    try {
+
+      setBlur({
+        filter:
+          "blur(4px)",
+      });
+
 
       const nftPrincipal =
         typeof props.id === "string"
@@ -203,165 +366,378 @@ function Item(props) {
             )
           : props.id;
 
+
+      console.log(
+        "NFT ID:",
+        nftPrincipal.toText()
+      );
+
+      console.log(
+        "PRICE:",
+        Number(price)
+      );
+
+
+      // =========================
+      // LIST NFT
+      // =========================
+
       const listingResult =
         await opend.listItem(
           nftPrincipal,
           Number(price)
         );
 
+
       console.log(
-        "listing result:",
+        "LISTING RESULT:",
         listingResult
       );
 
+
       if (
-        listingResult === "Success" ||
-        listingResult === "Succes"
+        listingResult ===
+          "Success" ||
+        listingResult ===
+          "Succes"
       ) {
+
+        console.log(
+          "LISTING SUCCESS"
+        );
+
+
+        // =========================
+        // GET OPEND ID
+        // =========================
+
         const openDId =
           await opend.getOpenDCanisterID();
+
+
+        console.log(
+          "OPEND ID:",
+          openDId.toText
+            ? openDId.toText()
+            : openDId
+        );
+
+
+        // =========================
+        // TRANSFER NFT
+        // =========================
 
         const transferResult =
           await NFTActor.current.transferOwnership(
             openDId
           );
 
+
         console.log(
-          "transfer:",
+          "TRANSFER RESULT:",
           transferResult
         );
 
+
         if (
-          transferResult === "Success" ||
-          transferResult === "Succes"
+          transferResult ===
+            "Success" ||
+          transferResult ===
+            "Succes"
         ) {
-          setButton(null);
-
-          setShowPriceInput(false);
-
-          setOwner("OpenD");
-
-          setListed(true);
 
           console.log(
             "TRANSFER SUCCESS"
           );
 
+
+          // NFT now belongs
+          // to OpenD
+
+          setOwner(
+            "OpenD"
+          );
+
+          setListed(
+            true
+          );
+
+          setIsListed(
+            true
+          );
+
+
+          // Hide price input
+
+          setShowPriceInput(
+            false
+          );
+
+
+          // Keep image blurred
+
+          setBlur({
+            filter:
+              "blur(4px)",
+          });
+
+
         } else {
+
           console.log(
-            "Transfer failed:",
+            "TRANSFER FAILED:",
             transferResult
           );
 
           setBlur({});
+
         }
 
       } else {
+
         console.log(
-          "Listing failed:",
+          "LISTING FAILED:",
           listingResult
         );
 
         setBlur({});
+
       }
 
     } catch (error) {
+
       console.error(
-        "Selling NFT error:",
+        "SELLING NFT ERROR:",
         error
       );
 
       setBlur({});
+
     }
   }
+
 
   // =========================
   // BUY
   // =========================
-async function handleBuy() {
-  console.log("Buy was triggered");
 
-  console.log(
-    "NFT ID:",
-    props.id.toText
-      ? props.id.toText()
-      : props.id
-  );
+  async function handleBuy() {
 
-  console.log(
-    "NFT PRICE:",
-    priceRef.current
-  );
-}
+    console.log(
+      "========== BUY CLICKED =========="
+    );
+
+
+    const nftId =
+      typeof props.id === "string"
+        ? props.id
+        : props.id.toText();
+
+
+    console.log(
+      "NFT ID:",
+      nftId
+    );
+
+    console.log(
+      "NFT PRICE:",
+      price
+    );
+
+  }
+
+
+  // =========================
+  // RENDER
+  // =========================
 
   return (
+
     <div className="disGrid-item">
 
       <div className="disPaper-root disCard-root makeStyles-root-17 disPaper-elevation1 disPaper-rounded">
 
+
+        {/* =========================
+            NFT IMAGE
+        ========================= */}
+
         {image && (
+
           <img
             className="disCardMedia-root makeStyles-image-19 disCardMedia-media disCardMedia-img"
             src={image}
             style={blur}
             alt={name}
           />
+
         )}
+
 
         <div className="disCardContent-root">
 
-          {/* PRICE */}
 
-          {props.role === "discover" && (
-            <div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
-              <span className="disChip-label">
-                {price} DANG
-              </span>
-            </div>
-          )}
+          {/* =========================
+              DISCOVER PRICE
+          ========================= */}
 
-          {/* NAME */}
+          {props.role ===
+            "discover" &&
+
+            isListed && (
+
+              <div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
+
+                <span className="disChip-label">
+
+                  {price}
+                  {" "}
+                  DANG
+
+                </span>
+
+              </div>
+
+            )
+          }
+
+
+          {/* =========================
+              NFT NAME
+          ========================= */}
 
           <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
+
             {name}
 
             {listed && (
+
               <span>
                 {" "}
                 Listed
               </span>
+
             )}
+
           </h2>
 
-          {/* OWNER */}
+
+          {/* =========================
+              OWNER
+          ========================= */}
 
           <p className="disTypography-root makeStyles-bodyText-24 disTypography-body2 disTypography-colorTextSecondary">
-            Owner: {owner}
+
+            Owner:
+            {" "}
+            {owner}
+
           </p>
 
-          {/* SELL PRICE INPUT */}
 
-          {showPriceInput && (
-            <input
-              placeholder="Price in DANG"
-              type="number"
-              className="price-input"
-              value={price}
-              onChange={(e) =>
-                setPrice(
-                  e.target.value
-                )
-              }
-            />
-          )}
+          {/* =========================
+              MY NFTs
+              SELL BUTTON
+          ========================= */}
 
-          {/* BUTTON */}
+          {props.role ===
+            "collection" &&
 
-          {button}
+            !isListed &&
+
+            !showPriceInput && (
+
+              <Button
+                handleClick={
+                  handleSell
+                }
+                text="Sell"
+              />
+
+            )
+          }
+
+
+          {/* =========================
+              PRICE INPUT
+          ========================= */}
+
+          {props.role ===
+            "collection" &&
+
+            !isListed &&
+
+            showPriceInput && (
+
+              <input
+                placeholder=
+                  "Price in DANG"
+                type="number"
+                className=
+                  "price-input"
+                value={
+                  price
+                }
+                onChange={
+                  (e) =>
+                    setPrice(
+                      e.target.value
+                    )
+                }
+              />
+
+            )
+          }
+
+
+          {/* =========================
+              CONFIRM BUTTON
+          ========================= */}
+
+          {props.role ===
+            "collection" &&
+
+            !isListed &&
+
+            showPriceInput && (
+
+              <Button
+                handleClick={
+                  sellItem
+                }
+                text="Confirm"
+              />
+
+            )
+          }
+
+
+          {/* =========================
+              DISCOVER BUY BUTTON
+          ========================= */}
+
+          {props.role ===
+            "discover" &&
+
+            isListed && (
+
+              <Button
+                handleClick={
+                  handleBuy
+                }
+                text="Buy"
+              />
+
+            )
+          }
+
 
         </div>
+
       </div>
+
     </div>
+
   );
 }
 
