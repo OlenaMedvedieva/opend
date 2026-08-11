@@ -13,8 +13,10 @@ export const canisterId = process.env.NFT_CANISTER_ID;
  * @return {import("@dfinity/agent").ActorSubclass<import("./nft.did.js")._SERVICE>}
  */
  export const createActor = (canisterId, options) => {
-  const agent = new HttpAgent({ ...options?.agentOptions });
-  
+  const agent = new HttpAgent({
+  ...options?.agentOptions,
+  identity: options?.identity,
+});
   // Fetch root key for certificate validation during development
   if(process.env.NODE_ENV !== "production") {
     agent.fetchRootKey().catch(err=>{

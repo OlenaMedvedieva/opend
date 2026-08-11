@@ -1,0 +1,1846 @@
+
+> opend_assets@0.1.0 prestart
+> npm run copy:types
+
+
+> opend_assets@0.1.0 copy:types
+> rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations
+
+sending incremental file list
+
+sent 336 bytes  received 14 bytes  700.00 bytes/sec
+total size is 19,800  speedup is 56.57
+
+> opend_assets@0.1.0 start
+> webpack serve --mode development --env development
+
+No production canister_ids.json found. Continuing with local
+<i> [webpack-dev-server] [HPM] Proxy created: /api  -> http://localhost:8000
+<i> [webpack-dev-server] [HPM] Proxy rewrite rule created: "^/api" ~> "/api"
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:8081/
+<i> [webpack-dev-server] On Your Network (IPv4): http://172.23.47.70:8081/
+<i> [webpack-dev-server] Content not from webpack is served from '/home/claus/opend/public' directory
+<i> [webpack-dev-server] 404s will fallback to '/index.html'
+assets by path *.png 90.1 KiB
+  asset logo.png 80.3 KiB [emitted] [from: src/opend_assets/assets/logo.png] [copied]
+  asset home-img.png 9.81 KiB [emitted] [from: src/opend_assets/assets/home-img.png] [copied]
+asset index.js 13.2 MiB [emitted] (name: index) 1 related asset
+asset main.css 25.4 KiB [emitted] [from: src/opend_assets/assets/main.css] [copied]
+asset favicon.ico 15 KiB [emitted] [from: src/opend_assets/assets/favicon.ico] [copied]
+asset index.html 328 bytes [emitted]
+runtime modules 27.2 KiB 14 modules
+javascript modules 11.8 MiB
+  modules by path ./node_modules/ 11.7 MiB 1358 modules
+  modules by path ./src/ 137 KiB
+    modules by path ./src/opend_assets/ 134 KiB 10 modules
+    modules by path ./src/declarations/ 3.67 KiB 4 modules
+json modules 365 KiB
+  modules by path ./node_modules/webpack/ 171 KiB 28 modules
+  modules by path ./node_modules/ajv/lib/ 3.12 KiB 2 modules
+  modules by path ./node_modules/node-releases/data/ 40.4 KiB 2 modules
+  modules by path ./node_modules/ajv-formats/ 3.07 KiB
+    ./node_modules/ajv-formats/node_modules/ajv/dist/refs/json-schema-draft-07.json 2.72 KiB [built] [code generated]
+    ./node_modules/ajv-formats/node_modules/ajv/dist/refs/data.json 360 bytes [built] [code generated]
+asset modules 5.03 KiB 19 modules
+
+WARNING in ./node_modules/loader-runner/lib/loadLoader.js 58:17-37
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/loader-runner/lib/LoaderRunner.js 10:19-42
+ @ ./node_modules/webpack/lib/NormalModule.js 9:35-59
+ @ ./node_modules/webpack/lib/index.js 248:9-34
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/loader-utils/lib/getHashDigest.js 52:11-39
+Module not found: Error: Can't resolve 'crypto' in '/home/claus/opend/node_modules/loader-utils/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+	- install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "crypto": false }
+ @ ./node_modules/loader-utils/lib/index.js 11:22-48
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 49:26-56
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/ts-loader/dist/compilerSetup.js 11:19-50
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/ts-loader/dist/instances.js 52:24-50
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/ts-loader/dist/instances.js 325:35-64
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/lib/debug/ProfilingPlugin.js 26:13-33
+Module not found: Error: Can't resolve 'inspector' in '/home/claus/opend/node_modules/webpack/lib/debug'
+ @ ./node_modules/webpack/lib/index.js 530:10-44
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/lib/serialization/ObjectMiddleware.js 647:9-25
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/lib/util/serialization.js 19:1-45
+ @ ./node_modules/webpack/lib/index.js 545:10-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 22:4-29
+Module not found: Error: Can't resolve 'worker_threads' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build'
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/jest-worker/build/base/BaseWorkerPool.js 111:19-46
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 8:45-77
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/jest-worker/build/index.js 68:19-38
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/jest-worker/build/workers/processChild.js 89:15-28
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/node_modules/jest-worker/build/workers/ChildProcessWorker.js 134:6-39
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 41:15-62
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/jest-worker/build/workers/processChild.js 105:15-28
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/node_modules/jest-worker/build/workers/ChildProcessWorker.js 134:6-39
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 41:15-62
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/minify.js 329:12-19
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 10:4-23 434:19-46
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 456:8-28
+Module not found: Error: Can't resolve 'uglify-js' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 496:18-51
+Module not found: Error: Can't resolve 'uglify-js/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 641:10-30
+Module not found: Error: Can't resolve '@swc/core' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 701:18-51
+Module not found: Error: Can't resolve '@swc/core/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 748:14-32
+Module not found: Error: Can't resolve 'esbuild' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 784:18-49
+Module not found: Error: Can't resolve 'esbuild/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 909:20-48
+Module not found: Error: Can't resolve '@minify-html/node' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 931:18-59
+Module not found: Error: Can't resolve '@minify-html/node/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 976:18-38
+Module not found: Error: Can't resolve '@swc/html' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 999:18-51
+Module not found: Error: Can't resolve '@swc/html/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1091:16-28
+Critical dependency: the request of a dependency is an expression
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1113:14-32
+Module not found: Error: Can't resolve 'cssnano' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1172:18-49
+Module not found: Error: Can't resolve 'cssnano/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1201:11-26
+Module not found: Error: Can't resolve 'csso' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1226:18-46
+Module not found: Error: Can't resolve 'csso/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1411:19-42
+Module not found: Error: Can't resolve 'lightningcss' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1453:18-54
+Module not found: Error: Can't resolve 'lightningcss/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1498:10-29
+Module not found: Error: Can't resolve '@swc/css' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+WARNING in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1537:18-50
+Module not found: Error: Can't resolve '@swc/css/package.json' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+31 warnings have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+ERROR in ./node_modules/clean-css/lib/options/format.js 1:22-39
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/clean-css/lib/options'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/clean-css/lib/clean.js 15:17-55
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/options/rebase-to.js 1:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/options'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/clean.js 22:19-49
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/apply-source-maps.js 1:9-22
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 4:22-52
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/apply-source-maps.js 2:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 4:22-52
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/is-allowed-resource.js 1:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 6:24-56
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/load-original-sources.js 1:9-22
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 7:26-60
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/load-original-sources.js 2:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 7:26-60
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/load-remote-resource.js 1:11-26
+Module not found: Error: Can't resolve 'http' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+	- install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "http": false }
+ @ ./node_modules/clean-css/lib/options/fetch.js 1:25-66
+ @ ./node_modules/clean-css/lib/clean.js 14:16-42
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/load-remote-resource.js 2:12-28
+Module not found: Error: Can't resolve 'https' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+	- install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "https": false }
+ @ ./node_modules/clean-css/lib/options/fetch.js 1:25-66
+ @ ./node_modules/clean-css/lib/clean.js 14:16-42
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/read-sources.js 1:9-22
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/read-sources.js 2:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/rebase-local-map.js 1:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 10:21-50
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/rebase-remote-map.js 1:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 11:22-52
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/clean-css/lib/reader/rewrite-url.js 1:11-26
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/clean-css/lib/reader'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/clean-css/lib/reader/rebase.js 3:17-41
+ @ ./node_modules/clean-css/lib/reader/read-sources.js 9:13-32
+ @ ./node_modules/clean-css/lib/clean.js 25:18-50
+ @ ./node_modules/clean-css/index.js 1:0-39
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1255:15-35
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/graceful-fs/graceful-fs.js 1:9-22
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/graceful-fs'
+ @ ./node_modules/webpack/lib/node/NodeEnvironmentPlugin.js 9:11-33
+ @ ./node_modules/webpack/lib/index.js 461:10-49
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/graceful-fs/polyfills.js 1:16-36
+Module not found: Error: Can't resolve 'constants' in '/home/claus/opend/node_modules/graceful-fs'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+	- install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "constants": false }
+ @ ./node_modules/graceful-fs/graceful-fs.js 2:16-41
+ @ ./node_modules/webpack/lib/node/NodeEnvironmentPlugin.js 9:11-33
+ @ ./node_modules/webpack/lib/index.js 461:10-49
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/loader-runner/lib/LoaderRunner.js 8:21-34
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/loader-runner/lib'
+ @ ./node_modules/webpack/lib/NormalModule.js 9:35-59
+ @ ./node_modules/webpack/lib/index.js 248:9-34
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/loader-utils/lib/interpolateName.js 3:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/loader-utils/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/loader-utils/lib/index.js 12:24-52
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 49:26-56
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/loader-utils/lib/isUrlRequest.js 3:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/loader-utils/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/loader-utils/lib/index.js 8:21-46
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 49:26-56
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/loader-utils/lib/stringifyRequest.js 3:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/loader-utils/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/loader-utils/lib/index.js 5:25-54
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 49:26-56
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/mime-types/index.js 16:14-37
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/mime-types'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/asset/AssetGenerator.js 8:18-39
+ @ ./node_modules/webpack/lib/asset/AssetModulesPlugin.js 57:40-67
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 10:27-64
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/after-compile.js 37:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/instances.js 50:24-50
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/config.js 39:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/instances.js 53:17-36
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/constants.js 4:11-24
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/ts-loader/dist/index.js 37:31-53
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/index.js 35:28-45
+Module not found: Error: Can't resolve 'crypto' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+	- install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "crypto": false }
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/index.js 36:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/instances.js 47:24-37
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/ts-loader/dist'
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/instances.js 48:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/logger.js 5:18-36
+Module not found: Error: Can't resolve 'console' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "console": require.resolve("console-browserify") }'
+	- install 'console-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "console": false }
+ @ ./node_modules/ts-loader/dist/instances.js 56:28-47
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/servicesHost.js 41:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/instances.js 57:23-48
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/utils.js 54:24-37
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/ts-loader/dist'
+ @ ./node_modules/ts-loader/dist/index.js 40:16-34
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/utils.js 56:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/index.js 40:16-34
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/ts-loader/dist/watch-run.js 37:26-41
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/ts-loader/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/ts-loader/dist/instances.js 59:20-42
+ @ ./node_modules/ts-loader/dist/index.js 38:20-42
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/DirectoryWatcher.js 8:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/watchpack/lib/getWatcherManager.js 8:25-54
+ @ ./node_modules/watchpack/lib/index.js 9:26-56
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/DirectoryWatcher.js 28:15-37
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/watchpack/lib/getWatcherManager.js 8:25-54
+ @ ./node_modules/watchpack/lib/index.js 9:26-56
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/LinkResolver.js 7:11-24
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/watchpack/lib'
+ @ ./node_modules/watchpack/lib/index.js 8:21-46
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/LinkResolver.js 8:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/watchpack/lib/index.js 8:21-46
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/getWatcherManager.js 7:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/watchpack/lib/index.js 9:26-56
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/reducePlan.js 7:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/watchpack/lib/watchEventSource.js 10:19-42
+ @ ./node_modules/watchpack/lib/index.js 11:25-54
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/watchEventSource.js 8:11-24
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/watchpack/lib'
+ @ ./node_modules/watchpack/lib/index.js 11:25-54
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/watchEventSource.js 9:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/watchpack/lib/index.js 11:25-54
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/watchpack/lib/watchEventSource.js 15:15-37
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/watchpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/watchpack/lib/index.js 11:25-54
+ @ ./node_modules/webpack/lib/config/defaults.js 380:6-34 388:5-33 400:6-34 408:6-34
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/hot/lazy-compilation-node.js 13:32-48
+Module not found: Error: Can't resolve 'https' in '/home/claus/opend/node_modules/webpack/hot'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+	- install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "https": false }
+ @ ./node_modules/webpack/hot/ sync ^\.\/lazy\-compilation\-.*\.js$ ./lazy-compilation-node.js
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 270:9-274:10
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/hot/lazy-compilation-node.js 13:51-66
+Module not found: Error: Can't resolve 'http' in '/home/claus/opend/node_modules/webpack/hot'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+	- install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "http": false }
+ @ ./node_modules/webpack/hot/ sync ^\.\/lazy\-compilation\-.*\.js$ ./lazy-compilation-node.js
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 270:9-274:10
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/NormalModule.js 10:20-42
+Module not found: Error: Can't resolve 'querystring' in '/home/claus/opend/node_modules/webpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "querystring": require.resolve("querystring-es3") }'
+	- install 'querystring-es3'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "querystring": false }
+ @ ./node_modules/webpack/lib/index.js 248:9-34
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/TemplatedPathPlugin.js 8:30-45
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 27:28-60
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/asset/AssetGenerator.js 9:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/asset'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/asset/AssetModulesPlugin.js 57:40-67
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 10:27-64
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/cli.js 8:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/index.js 120:9-25
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/config/browserslistTargetHandler.js 9:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/config'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/config/target.js 11:1-39
+ @ ./node_modules/webpack/lib/config/defaults.js 16:4-23
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/config/defaults.js 8:11-24
+Module not found: Error: Can't resolve 'fs' in '/home/claus/opend/node_modules/webpack/lib/config'
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/config/defaults.js 9:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/config'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/hmr/lazyCompilationBackend.js 38:28-44
+Module not found: Error: Can't resolve 'https' in '/home/claus/opend/node_modules/webpack/lib/hmr'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+	- install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "https": false }
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 266:8-47
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/hmr/lazyCompilationBackend.js 38:47-62
+Module not found: Error: Can't resolve 'http' in '/home/claus/opend/node_modules/webpack/lib/hmr'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+	- install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "http": false }
+ @ ./node_modules/webpack/lib/WebpackOptionsApply.js 266:8-47
+ @ ./node_modules/webpack/lib/index.js 300:9-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js 9:11-24
+Module not found: Error: Can't resolve 'vm' in '/home/claus/opend/node_modules/webpack/lib/javascript'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "vm": require.resolve("vm-browserify") }'
+	- install 'vm-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "vm": false }
+ @ ./node_modules/webpack/lib/index.js 211:9-56 379:10-57
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/javascript/JavascriptParser.js 11:11-24
+Module not found: Error: Can't resolve 'vm' in '/home/claus/opend/node_modules/webpack/lib/javascript'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "vm": require.resolve("vm-browserify") }'
+	- install 'vm-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "vm": false }
+ @ ./node_modules/webpack/lib/index.js 382:10-50
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/schemes/HttpUriPlugin.js 8:30-45
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/index.js 562:11-45
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/schemes/HttpUriPlugin.js 10:64-79
+Module not found: Error: Can't resolve 'zlib' in '/home/claus/opend/node_modules/webpack/lib/schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "zlib": require.resolve("browserify-zlib") }'
+	- install 'browserify-zlib'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "zlib": false }
+ @ ./node_modules/webpack/lib/index.js 562:11-45
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/schemes/HttpUriPlugin.js 20:30-45
+Module not found: Error: Can't resolve 'http' in '/home/claus/opend/node_modules/webpack/lib/schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+	- install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "http": false }
+ @ ./node_modules/webpack/lib/index.js 562:11-45
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/schemes/HttpUriPlugin.js 21:31-47
+Module not found: Error: Can't resolve 'https' in '/home/claus/opend/node_modules/webpack/lib/schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+	- install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "https": false }
+ @ ./node_modules/webpack/lib/index.js 562:11-45
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/serialization/FileMiddleware.js 15:4-19
+Module not found: Error: Can't resolve 'zlib' in '/home/claus/opend/node_modules/webpack/lib/serialization'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "zlib": require.resolve("browserify-zlib") }'
+	- install 'browserify-zlib'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "zlib": false }
+ @ ./node_modules/webpack/lib/util/serialization.js 99:25-67
+ @ ./node_modules/webpack/lib/index.js 545:10-41
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/util/createHash.js 162:38-55
+Module not found: Error: Can't resolve 'crypto' in '/home/claus/opend/node_modules/webpack/lib/util'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+	- install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "crypto": false }
+ @ ./node_modules/webpack/lib/index.js 536:10-38
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/util/fs.js 8:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/util'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/Compiler.js 32:34-54
+ @ ./node_modules/webpack/lib/index.js 147:9-30
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/lib/util/identifier.js 7:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/lib/util'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/Compiler.js 33:30-58
+ @ ./node_modules/webpack/lib/index.js 147:9-30
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/base/BaseWorkerPool.js 9:39-54
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build/base'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 8:45-77
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/index.js 27:15-28
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/workers/ChildProcessWorker.js 9:15-39
+Module not found: Error: Can't resolve 'child_process' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build/workers'
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 41:15-62
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/workers/NodeThreadsWorker.js 9:39-54
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build/workers'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 39:15-61
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/workers/NodeThreadsWorker.js 29:15-40
+Module not found: Error: Can't resolve 'worker_threads' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build/workers'
+ @ ./node_modules/webpack/node_modules/jest-worker/build/WorkerPool.js 39:15-61
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 38:41-64
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/jest-worker/build/workers/messageParent.js 19:39-64
+Module not found: Error: Can't resolve 'worker_threads' in '/home/claus/opend/node_modules/webpack/node_modules/jest-worker/build/workers'
+ @ ./node_modules/webpack/node_modules/jest-worker/build/index.js 44:44-78
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 431:12-34
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 3:11-24
+Module not found: Error: Can't resolve 'os' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "os": require.resolve("os-browserify/browser") }'
+	- install 'os-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "os": false }
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 4:13-28
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/serialize-javascript.js 8:19-36
+Module not found: Error: Can't resolve 'crypto' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+	- install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "crypto": false }
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 180:45-78
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+ERROR in ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/utils.js 1276:29-48
+Module not found: Error: Can't resolve 'path' in '/home/claus/opend/node_modules/webpack/node_modules/terser-webpack-plugin/dist'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "path": require.resolve("path-browserify") }'
+	- install 'path-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "path": false }
+ @ ./node_modules/webpack/node_modules/terser-webpack-plugin/dist/index.js 31:4-22
+ @ ./node_modules/webpack/lib/config/defaults.js 1070:25-57
+ @ ./node_modules/webpack/lib/index.js 328:10-66
+ @ ./node_modules/ts-loader/dist/loaderUtils.js 39:29-47
+ @ ./node_modules/ts-loader/dist/index.js 39:33-57 42:22-46
+ @ ./node_modules/ts-loader/index.js 1:13-30
+ @ ./src/opend_assets/src/components/Item.jsx 7:0-31
+ @ ./src/opend_assets/src/components/App.jsx 5:0-26
+ @ ./src/opend_assets/src/index.jsx 3:0-35 6:40-43
+
+73 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.63.0 compiled with 73 errors and 31 warnings in 8681 ms
+assets by status 131 KiB [cached] 4 assets
+assets by status 3.32 MiB [emitted]
+  assets by path *.js 3.24 MiB
+    asset index.js 3.23 MiB [emitted] (name: index) 1 related asset
+    asset index.a3751773f8d51e92b6eb.hot-update.js 7.15 KiB [emitted] [immutable] [hmr] (name: index) 1 related asset
+  asset index.a3751773f8d51e92b6eb.hot-update.json 79.1 KiB [emitted] [immutable] [hmr]
+  asset index.html 328 bytes [emitted]
+Entrypoint index 3.24 MiB (3.67 MiB) = index.js 3.23 MiB index.a3751773f8d51e92b6eb.hot-update.js 7.15 KiB 2 auxiliary assets
+cached modules 3.01 MiB [cached] 161 modules
+runtime modules 27.1 KiB 13 modules
+javascript modules 9.17 KiB
+  ./src/opend_assets/src/components/App.jsx 433 bytes [built] [code generated]
+  ./src/opend_assets/src/components/Minter.jsx 3.25 KiB [built] [code generated]
+  ./src/opend_assets/src/components/Item.jsx 4.54 KiB [built] [code generated]
+  ./src/opend_assets/src/components/Gallery.jsx 976 bytes [built] [code generated]
+webpack 5.63.0 compiled successfully in 800 ms

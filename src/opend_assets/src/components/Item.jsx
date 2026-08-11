@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Actor, HttpAgent } from "@dfinity/agent";
 import { idlFactory } from "../../../declarations/nft";
@@ -10,52 +9,24 @@ function Item(props) {
   const [name, setName] = React.useState("");
   const [owner, setOwner] = React.useState("");
   const [image, setImage] = React.useState("");
-
-  const [showPriceInput, setShowPriceInput] =
-    React.useState(false);
-
+  const [showPriceInput, setShowPriceInput] = React.useState(false);
   const [blur, setBlur] = React.useState({});
+  const [listed, setListed] = React.useState(false);
+  const [isListed, setIsListed] = React.useState(false);
+  const [price, setPrice] = React.useState("");
+  const [shouldDisplay, setDisplay] = React.useState(true);
+  const [loaderHidden, setLoaderHidden] = React.useState(true);
 
-  const [listed, setListed] =
-    React.useState(false);
-
-  const [isListed, setIsListed] =
-    React.useState(false);
-
-  const [price, setPrice] =
-    React.useState("");
-
-  const NFTActor =
-    React.useRef(null);
-
-
-  // =========================
-  // LOAD NFT
-  // =========================
+  const NFTActor = React.useRef(null);
 
   async function loadNFT() {
     try {
       const id = props.id;
-
       const nftPrincipal =
-        typeof id === "string"
-          ? Principal.fromText(id)
-          : id;
+        typeof id === "string" ? Principal.fromText(id) : id;
 
-      console.log(
-        "ITEM ID:",
-        nftPrincipal.toText()
-      );
-
-      console.log(
-        "ITEM ROLE:",
-        props.role
-      );
-
-
-      // =========================
-      // CREATE NFT ACTOR
-      // =========================
+      console.log("ITEM ID:", nftPrincipal.toText());
+      console.log("ITEM ROLE:", props.role);
 
       const agent = new HttpAgent({
         host: "http://127.0.0.1:8000",
@@ -63,683 +34,340 @@ function Item(props) {
 
       await agent.fetchRootKey();
 
-      NFTActor.current =
-        Actor.createActor(
-          idlFactory,
-          {
-            agent,
-            canisterId:
-              nftPrincipal,
-          }
-        );
+      NFTActor.current = Actor.createActor(idlFactory, {
+        agent,
+        canisterId: nftPrincipal,
+      });
 
+      const nftName = await NFTActor.current.getName();
+      const nftOwner = await NFTActor.current.getOwner();
+      const imageData = await NFTActor.current.getAsset();
 
-      // =========================
-      // GET NFT DATA
-      // =========================
+      console.log("NFT OWNER:", nftOwner.toText());
 
-      const nftName =
-        await NFTActor.current.getName();
-
-      const nftOwner =
-        await NFTActor.current.getOwner();
-
-      const imageData =
-        await NFTActor.current.getAsset();
-
-
-      console.log(
-        "NFT OWNER:",
-        nftOwner.toText()
+      const imageContent = new Uint8Array(imageData);
+      const imageUrl = URL.createObjectURL(
+        new Blob([imageContent], { type: "image/png" })
       );
-
-
-      // =========================
-      // IMAGE
-      // =========================
-
-      const imageContent =
-        new Uint8Array(
-          imageData
-        );
-
-      const imageUrl =
-        URL.createObjectURL(
-          new Blob(
-            [imageContent],
-            {
-              type:
-                "image/png",
-            }
-          )
-        );
-
 
       setName(nftName);
-
-      setOwner(
-        nftOwner.toText()
-      );
-
+      setOwner(nftOwner.toText());
       setImage(imageUrl);
 
+      const nftIsListed = await opend.isListed(nftPrincipal);
 
-      // =========================
-      // CHECK LISTED STATUS
-      // =========================
+      console.log("IS LISTED:", nftIsListed);
 
-      const nftIsListed =
-        await opend.isListed(
-          nftPrincipal
-        );
+      setIsListed(nftIsListed);
 
-      console.log(
-        "IS LISTED:",
-        nftIsListed
-      );
+      if (props.role === "collection") {
+        console.log("COLLECTION ROLE");
 
-
-      setIsListed(
-        nftIsListed
-      );
-
-
-      // =========================
-      // COLLECTION
-      // =========================
-
-      if (
-        props.role ===
-        "collection"
-      ) {
-
-        console.log(
-          "COLLECTION ROLE"
-        );
-
-
-        if (
-          nftIsListed
-        ) {
-
-          // NFT already listed
-
-          console.log(
-            "NFT IS LISTED"
-          );
+        if (nftIsListed) {
+          console.log("NFT IS LISTED");
 
           setListed(true);
-
-          setOwner(
-            "OpenD"
-          );
-
-          setBlur({
-            filter:
-              "blur(4px)",
-          });
-
-          // No price input
-          setShowPriceInput(
-            false
-          );
-
+          setOwner("OpenD");
+          setBlur({ filter: "blur(4px)" });
+          setShowPriceInput(false);
         } else {
-
-          // NFT is available
-          // to sell
-
-          console.log(
-            "NFT IS NOT LISTED"
-          );
+          console.log("NFT IS NOT LISTED");
 
           setListed(false);
-
           setBlur({});
-
-          setShowPriceInput(
-            false
-          );
+          setShowPriceInput(false);
         }
       }
 
+      if (props.role === "discover") {
+        console.log("DISCOVER ROLE");
 
-      // =========================
-      // DISCOVER
-      // =========================
-
-      if (
-        props.role ===
-        "discover"
-      ) {
-
-        console.log(
-          "DISCOVER ROLE"
-        );
-
-
-        if (
-          nftIsListed
-        ) {
-
+        if (nftIsListed) {
           const listedPrice =
-            await opend.getListedNFTPrice(
-              nftPrincipal
-            );
-
+            await opend.getListedNFTPrice(nftPrincipal);
 
           console.log(
             "NFT PRICE FROM CANISTER:",
             listedPrice.toString()
           );
 
-
-          setPrice(
-            listedPrice.toString()
-          );
-
-          setShowPriceInput(
-            false
-          );
-
+          setPrice(listedPrice.toString());
+          setShowPriceInput(false);
         } else {
-
-          console.log(
-            "NFT NOT LISTED"
-          );
+          console.log("NFT NOT LISTED");
 
           setPrice("");
-
-          setShowPriceInput(
-            false
-          );
+          setShowPriceInput(false);
         }
       }
-
     } catch (error) {
-
-      console.error(
-        "NFT loading error:",
-        error
-      );
-
+      console.error("NFT loading error:", error);
     }
   }
-
-
-  // =========================
-  // USE EFFECT
-  // =========================
 
   React.useEffect(() => {
-
-    if (
-      props.id
-    ) {
-
+    if (props.id) {
       loadNFT();
-
     }
-
-  }, [
-    props.id,
-    props.role
-  ]);
-
-
-  // =========================
-  // SELL BUTTON
-  // =========================
+  }, [props.id, props.role]);
 
   function handleSell() {
+    console.log("========== SELL CLICKED ==========");
+    console.log("NFT ID:", props.id);
+    console.log("ROLE:", props.role);
 
-    console.log(
-      "========== SELL CLICKED =========="
-    );
-
-    console.log(
-      "NFT ID:",
-      props.id
-    );
-
-    console.log(
-      "ROLE:",
-      props.role
-    );
-
-
-    // Open price input
-
-    setShowPriceInput(
-      true
-    );
-
+    setShowPriceInput(true);
+    
   }
 
-
-  // =========================
-  // LIST NFT
-  // =========================
-
   async function sellItem() {
+    console.log("========== CONFIRM SELL ==========");
+    console.log("PRICE:", price);
 
-    console.log(
-      "========== CONFIRM SELL =========="
-    );
-
-    console.log(
-      "PRICE:",
-      price
-    );
-
-
-    // =========================
-    // CHECK PRICE
-    // =========================
-
-    if (
-      price === "" ||
-      Number(price) <= 0
-    ) {
-
-      console.log(
-        "Please enter a valid price"
-      );
-
+    if (price === "" || Number(price) <= 0) {
+      console.log("Please enter a valid price");
       return;
-
     }
 
-
     try {
-
-      setBlur({
-        filter:
-          "blur(4px)",
-      });
-
+      setBlur({ filter: "blur(4px)" });
 
       const nftPrincipal =
         typeof props.id === "string"
-          ? Principal.fromText(
-              props.id
-            )
+          ? Principal.fromText(props.id)
           : props.id;
 
+      console.log("NFT ID:", nftPrincipal.toText());
+      console.log("PRICE:", Number(price));
 
-      console.log(
-        "NFT ID:",
-        nftPrincipal.toText()
-      );
-
-      console.log(
-        "PRICE:",
+      const listingResult = await opend.listItem(
+        nftPrincipal,
         Number(price)
       );
 
-
-      // =========================
-      // LIST NFT
-      // =========================
-
-      const listingResult =
-        await opend.listItem(
-          nftPrincipal,
-          Number(price)
-        );
-
-
-      console.log(
-        "LISTING RESULT:",
-        listingResult
-      );
-
+      console.log("LISTING RESULT:", listingResult);
 
       if (
-        listingResult ===
-          "Success" ||
-        listingResult ===
-          "Succes"
+        listingResult === "Success" ||
+        listingResult === "Succes"
       ) {
+        console.log("LISTING SUCCESS");
 
-        console.log(
-          "LISTING SUCCESS"
-        );
-
-
-        // =========================
-        // GET OPEND ID
-        // =========================
-
-        const openDId =
-          await opend.getOpenDCanisterID();
-
+        const openDId = await opend.getOpenDCanisterID();
 
         console.log(
           "OPEND ID:",
-          openDId.toText
-            ? openDId.toText()
-            : openDId
+          openDId.toText ? openDId.toText() : openDId
         );
-
-
-        // =========================
-        // TRANSFER NFT
-        // =========================
 
         const transferResult =
-          await NFTActor.current.transferOwnership(
-            openDId
-          );
+          await NFTActor.current.transferOwnership(openDId);
 
-
-        console.log(
-          "TRANSFER RESULT:",
-          transferResult
-        );
-
+        console.log("TRANSFER RESULT:", transferResult);
 
         if (
-          transferResult ===
-            "Success" ||
-          transferResult ===
-            "Succes"
+          transferResult === "Success" ||
+          transferResult === "Succes"
         ) {
+          console.log("TRANSFER SUCCESS");
 
-          console.log(
-            "TRANSFER SUCCESS"
-          );
-
-
-          // NFT now belongs
-          // to OpenD
-
-          setOwner(
-            "OpenD"
-          );
-
-          setListed(
-            true
-          );
-
-          setIsListed(
-            true
-          );
-
-
-          // Hide price input
-
-          setShowPriceInput(
-            false
-          );
-
-
-          // Keep image blurred
-
-          setBlur({
-            filter:
-              "blur(4px)",
-          });
-
-
+          setOwner("OpenD");
+          setListed(true);
+          setIsListed(true);
+          setShowPriceInput(false);
+          setBlur({ filter: "blur(4px)" });
+          window.location.reload();
         } else {
-
-          console.log(
-            "TRANSFER FAILED:",
-            transferResult
-          );
-
+          console.log("TRANSFER FAILED:", transferResult);
           setBlur({});
-
         }
-
       } else {
-
-        console.log(
-          "LISTING FAILED:",
-          listingResult
-        );
-
+        console.log("LISTING FAILED:", listingResult);
         setBlur({});
-
       }
-
     } catch (error) {
-
-      console.error(
-        "SELLING NFT ERROR:",
-        error
-      );
-
+      console.error("SELLING NFT ERROR:", error);
       setBlur({});
-
     }
   }
 
+ async function handleBuy() {
+  try {
+    console.log("========== BUY CLICKED ==========");
 
-  // =========================
-  // BUY
-  // =========================
+    setLoaderHidden(false);
 
-  async function handleBuy() {
-
-    console.log(
-      "========== BUY CLICKED =========="
-    );
-
-
-    const nftId =
+    const nftPrincipal =
       typeof props.id === "string"
-        ? props.id
-        : props.id.toText();
-
+        ? Principal.fromText(props.id)
+        : props.id;
 
     console.log(
       "NFT ID:",
-      nftId
+      nftPrincipal.toText()
     );
+
+    const listed =
+      await opend.isListed(nftPrincipal);
 
     console.log(
-      "NFT PRICE:",
-      price
+      "IS LISTED:",
+      listed
     );
 
+    if (!listed) {
+      console.error("NFT IS NOT LISTED");
+      setLoaderHidden(true);
+      return;
+    }
+
+    const itemPrice =
+      await opend.getListedNFTPrice(nftPrincipal);
+
+    console.log(
+      "ITEM PRICE:",
+      itemPrice.toString(),
+      "DANG"
+    );
+
+    
+    const purchaseResult =
+      await opend.completePurchase(
+        nftPrincipal
+      );
+
+const caller = await opend.whoAmI();
+
+console.log(
+  "BROWSER OPEND CALLER:",
+  caller.toText()
+);
+    console.log(
+      "COMPLETE PURCHASE RESULT:",
+      purchaseResult
+    );
+
+    setLoaderHidden(true);
+
+    if (
+      purchaseResult === "Success" ||
+      purchaseResult === "Succes"
+    ) {
+      console.log(
+        "========== PURCHASE SUCCESS =========="
+      );
+
+      setIsListed(false);
+      setListed(false);
+      setOwner("You");
+      setPrice("");
+      setBlur({});
+      setDisplay(true);
+
+    } else {
+      console.error(
+        "PURCHASE FAILED:",
+        purchaseResult
+      );
+    }
+
+  } catch (error) {
+
+    setLoaderHidden(true);
+
+    console.error(
+      "BUY ERROR:",
+      error
+    );
   }
-
-
-  // =========================
-  // RENDER
-  // =========================
-
+}
   return (
-
-    <div className="disGrid-item">
-
+    <div
+      style={{
+        display: shouldDisplay ? "inline" : "none",
+      }}
+      className="disGrid-item"
+    >
       <div className="disPaper-root disCard-root makeStyles-root-17 disPaper-elevation1 disPaper-rounded">
 
-
-        {/* =========================
-            NFT IMAGE
-        ========================= */}
-
         {image && (
-
           <img
             className="disCardMedia-root makeStyles-image-19 disCardMedia-media disCardMedia-img"
             src={image}
             style={blur}
             alt={name}
           />
-
         )}
-
 
         <div className="disCardContent-root">
 
-
-          {/* =========================
-              DISCOVER PRICE
-          ========================= */}
-
-          {props.role ===
-            "discover" &&
-
-            isListed && (
-
-              <div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
-
-                <span className="disChip-label">
-
-                  {price}
-                  {" "}
-                  DANG
-
-                </span>
-
-              </div>
-
-            )
-          }
-
-
-          {/* =========================
-              NFT NAME
-          ========================= */}
+          {props.role === "discover" && isListed && (
+            <div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
+              <span className="disChip-label">
+                {price} DANG
+              </span>
+            </div>
+          )}
 
           <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
-
             {name}
 
             {listed && (
-
               <span>
                 {" "}
                 Listed
               </span>
-
             )}
-
           </h2>
 
-
-          {/* =========================
-              OWNER
-          ========================= */}
-
           <p className="disTypography-root makeStyles-bodyText-24 disTypography-body2 disTypography-colorTextSecondary">
-
-            Owner:
-            {" "}
-            {owner}
-
+            Owner: {owner}
           </p>
 
-
-          {/* =========================
-              MY NFTs
-              SELL BUTTON
-          ========================= */}
-
-          {props.role ===
-            "collection" &&
-
+          {props.role === "collection" &&
             !isListed &&
-
             !showPriceInput && (
-
               <Button
-                handleClick={
-                  handleSell
-                }
+                handleClick={handleSell}
                 text="Sell"
               />
+            )}
 
-            )
-          }
-
-
-          {/* =========================
-              PRICE INPUT
-          ========================= */}
-
-          {props.role ===
-            "collection" &&
-
+          {props.role === "collection" &&
             !isListed &&
-
             showPriceInput && (
-
               <input
-                placeholder=
-                  "Price in DANG"
+                placeholder="Price in DANG"
                 type="number"
-                className=
-                  "price-input"
-                value={
-                  price
-                }
-                onChange={
-                  (e) =>
-                    setPrice(
-                      e.target.value
-                    )
+                className="price-input"
+                value={price}
+                onChange={(e) =>
+                  setPrice(e.target.value)
                 }
               />
+            )}
 
-            )
-          }
-
-
-          {/* =========================
-              CONFIRM BUTTON
-          ========================= */}
-
-          {props.role ===
-            "collection" &&
-
+          {props.role === "collection" &&
             !isListed &&
-
             showPriceInput && (
-
               <Button
-                handleClick={
-                  sellItem
-                }
+                handleClick={sellItem}
                 text="Confirm"
               />
+            )}
 
-            )
-          }
-
-
-          {/* =========================
-              DISCOVER BUY BUTTON
-          ========================= */}
-
-          {props.role ===
-            "discover" &&
-
+          {props.role === "discover" &&
             isListed && (
-
               <Button
-                handleClick={
-                  handleBuy
-                }
+                handleClick={handleBuy}
                 text="Buy"
               />
-
-            )
-          }
-
+            )}
 
         </div>
-
       </div>
-
     </div>
-
   );
 }
 
 export default Item;
-

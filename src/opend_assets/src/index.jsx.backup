@@ -1,0 +1,13 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import { Principal } from "@dfinity/principal";
+
+const init = async () => {
+  ReactDOM.render(
+    <App />,
+    document.getElementById("root")
+  );
+};
+
+init();

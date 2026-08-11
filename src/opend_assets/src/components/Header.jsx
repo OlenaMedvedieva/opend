@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { HashRouter, Link, Switch, Route } from "react-router-dom";
 import homeImage from "../../assets/home-img.png";
 import Minter from "./Minter";
 import Gallery from "./Gallery";
@@ -16,33 +16,42 @@ function Header() {
 
   console.log("CURRENT USER:", CURRENT_USER_ID.toText());
 
-  async function getNFTs() {
-    try {
-      const userNFTs = await opend.getOwnedNFTs(CURRENT_USER_ID);
+ 
+async function getNFTs() {
+  try {
+    const userNFTs = await opend.getOwnedNFTs(CURRENT_USER_ID);
 
-      console.log("USER NFTS:", userNFTs);
+    console.log("USER NFTS:", userNFTs);
+    setUserOwnedGallery(userNFTs);
 
-      setUserOwnedGallery(userNFTs);
-        
+    const listedNFTIds = await opend.getListedNFTs();
 
-      const listedNFTIds = await opend.getListedNFTs();
+    console.log("LISTED NFTS RAW:", listedNFTIds);
+    console.log("LISTED NFTS LENGTH:", listedNFTIds.length);
 
-      console.log("LISTED NFTS:", listedNFTIds);
+    listedNFTIds.forEach((id, index) => {
+      console.log(
+        "LISTED NFT",
+        index,
+        id.toText()
+      );
+    });
 
-      setListingGallery(listedNFTIds);
-       
-      
-    } catch (error) {
-      console.error("Error loading NFTs:", error);
-    }
+    setListingGallery(listedNFTIds);
+
+  } catch (error) {
+    console.error("Error loading NFTs:", error);
   }
+
+}
+
 
   useEffect(() => {
     getNFTs();
   }, []);
 
   return (
-    <BrowserRouter forceRefresh={true}>
+    <HashRouter forceRefresh={true}>
       <div className="app-root-1">
         <header className="Paper-root AppBar-root AppBar-positionStatic AppBar-colorPrimary Paper-elevation4">
           <div className="Toolbar-root Toolbar-regular header-appBar-13 Toolbar-gutters">
@@ -116,7 +125,7 @@ function Header() {
 </Route>
 
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

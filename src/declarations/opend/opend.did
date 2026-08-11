@@ -1,4 +1,5 @@
 service : {
+  completePurchase: (principal) -> (text);
   getListedNFTPrice: (principal) -> (nat) query;
   getListedNFTs: () -> (vec principal) query;
   getOpenDCanisterID: () -> (principal) query;
@@ -7,5 +8,5 @@ service : {
   isListed: (principal) -> (bool) query;
   listItem: (principal, nat) -> (text);
   mint: (vec nat8, text) -> (principal);
-  updateListingPrice: (principal, nat) -> (text);
+  whoAmI: () -> (principal);
 }

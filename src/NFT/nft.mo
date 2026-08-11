@@ -26,13 +26,14 @@ actor class NFT (name: Text, owner: Principal, content: [Nat8]) = this{
         return Principal.fromActor(this);
     };
 
-    public shared(msg) func transferOwnership(newOwner: Principal) : async Text{
-        if (msg.caller == nftOwner) {
-         nftOwner := newOwner;
-         return "Succes";
-        } else {
-            return "Error: Not initated by NFT Owner"
+public shared(msg) func transferOwnership(newOwner: Principal) : async Text {
+    let openDId = Principal.fromText("rrkah-fqaaa-aaaaa-aaaaq-cai");
 
-        }
+    if (msg.caller == nftOwner or msg.caller == openDId) {
+        nftOwner := newOwner;
+        return "Success";
+    } else {
+        return "Error: Not authorized";
     };
+};
 };
