@@ -16,6 +16,7 @@ function Gallery(props) {
             key={NFTId}
             id={NFTId}
             role={props.role}
+            opend={props.opend}
           />
         ))
       );

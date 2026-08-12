@@ -5,14 +5,14 @@ import { HashRouter, Link, Switch, Route } from "react-router-dom";
 import homeImage from "../../assets/home-img.png";
 import Minter from "./Minter";
 import Gallery from "./Gallery";
-import { opend } from "../../../declarations/opend";
 import { Principal } from "@dfinity/principal";
+import { opend } from "../../../declarations/opend";
 
-function Header() {
+function Header(props) {
   const [userOwnedGallery, setUserOwnedGallery] = useState();
   const [listingGallery, setListingGallery] = useState();
 
-  const CURRENT_USER_ID = Principal.fromText("2vxsx-fae");
+  const CURRENT_USER_ID = Principal.fromText("5t5jv-euusl-hiyw4-vcmeb-7xhk4-uvpbo-jtoaa-jrutd-25si4-xaqbj-jqe");
 
   console.log("CURRENT USER:", CURRENT_USER_ID.toText());
 
@@ -110,6 +110,7 @@ async function getNFTs() {
     title="Discover"
     ids={listingGallery}
     role="discover"
+    opend={props.buyerOpend}
   />
 </Route>
         <Route exact path="/minter">
@@ -121,6 +122,7 @@ async function getNFTs() {
     title="My NFTs"
     ids={userOwnedGallery}
     role="collection"
+    opend={props.buyerOpend}
   />
 </Route>
 

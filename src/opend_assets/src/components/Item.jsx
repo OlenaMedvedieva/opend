@@ -6,6 +6,7 @@ import { opend } from "../../../declarations/opend";
 import { Principal } from "@dfinity/principal";
 
 function Item(props) {
+  const opendActor = props.opend;
   const [name, setName] = React.useState("");
   const [owner, setOwner] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -54,7 +55,7 @@ function Item(props) {
       setOwner(nftOwner.toText());
       setImage(imageUrl);
 
-      const nftIsListed = await opend.isListed(nftPrincipal);
+      const nftIsListed = await opendActor.isListed(nftPrincipal);
 
       console.log("IS LISTED:", nftIsListed);
 
@@ -84,7 +85,7 @@ function Item(props) {
 
         if (nftIsListed) {
           const listedPrice =
-            await opend.getListedNFTPrice(nftPrincipal);
+            await opendActor.getListedNFTPrice(nftPrincipal);
 
           console.log(
             "NFT PRICE FROM CANISTER:",
@@ -140,7 +141,7 @@ function Item(props) {
       console.log("NFT ID:", nftPrincipal.toText());
       console.log("PRICE:", Number(price));
 
-      const listingResult = await opend.listItem(
+      const listingResult = await opendActor.listItem(
         nftPrincipal,
         Number(price)
       );
@@ -153,7 +154,7 @@ function Item(props) {
       ) {
         console.log("LISTING SUCCESS");
 
-        const openDId = await opend.getOpenDCanisterID();
+        const openDId = await opendActor.getOpenDCanisterID();
 
         console.log(
           "OPEND ID:",
@@ -202,18 +203,11 @@ function Item(props) {
         ? Principal.fromText(props.id)
         : props.id;
 
-    console.log(
-      "NFT ID:",
-      nftPrincipal.toText()
-    );
+    console.log("NFT ID:", nftPrincipal.toText());
 
-    const listed =
-      await opend.isListed(nftPrincipal);
+    const listed = await opendActor.isListed(nftPrincipal);
 
-    console.log(
-      "IS LISTED:",
-      listed
-    );
+    console.log("IS LISTED:", listed);
 
     if (!listed) {
       console.error("NFT IS NOT LISTED");
@@ -222,7 +216,7 @@ function Item(props) {
     }
 
     const itemPrice =
-      await opend.getListedNFTPrice(nftPrincipal);
+      await opendActor.getListedNFTPrice(nftPrincipal);
 
     console.log(
       "ITEM PRICE:",
@@ -230,18 +224,16 @@ function Item(props) {
       "DANG"
     );
 
-    
+    const caller = await opendActor.whoAmI();
+
+    console.log(
+      "BROWSER OPEND CALLER:",
+      caller.toText()
+    );
+
     const purchaseResult =
-      await opend.completePurchase(
-        nftPrincipal
-      );
+      await opendActor.completePurchase(nftPrincipal);
 
-const caller = await opend.whoAmI();
-
-console.log(
-  "BROWSER OPEND CALLER:",
-  caller.toText()
-);
     console.log(
       "COMPLETE PURCHASE RESULT:",
       purchaseResult
@@ -253,9 +245,7 @@ console.log(
       purchaseResult === "Success" ||
       purchaseResult === "Succes"
     ) {
-      console.log(
-        "========== PURCHASE SUCCESS =========="
-      );
+      console.log("========== PURCHASE SUCCESS ==========");
 
       setIsListed(false);
       setListed(false);
@@ -263,7 +253,6 @@ console.log(
       setPrice("");
       setBlur({});
       setDisplay(true);
-
     } else {
       console.error(
         "PURCHASE FAILED:",
@@ -272,7 +261,6 @@ console.log(
     }
 
   } catch (error) {
-
     setLoaderHidden(true);
 
     console.error(

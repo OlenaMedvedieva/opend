@@ -10,7 +10,7 @@ actor OpenD {
 
     private let token : actor {
         transferFrom : shared (Principal, Principal, Nat) -> async Text;
-    } = actor("rkp4c-7iaaa-aaaaa-aaaca-cai");
+    } = actor("qaa6y-5yaaa-aaaaa-aaafa-cai");
 
     private type Listing = {
         itemOwner : Principal;

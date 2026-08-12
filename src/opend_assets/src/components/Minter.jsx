@@ -93,7 +93,11 @@ console.log("CURRENT nftPrincipal:", nftPrincipal);
   return (
   <div className="minter-container">
     <h1>Minted!</h1>
-    <Item id={nftPrincipal.toText()} role="collection" />
+    <Item
+  id={nftPrincipal.toText()}
+  role="collection"
+  opend={opend}
+/>
   </div>
 );
 
