@@ -1,133 +1,218 @@
-Copyright 2022 London App Brewery LTD (www.appbrewery.com)
+# OpenD - Decentralized NFT Marketplace
 
-The code in this tutorial project is licended under the Apache License, Version 2.0 (the "License");
-you may not use this project except in compliance with the License.
-You may obtain a copy of the License at
+OpenD is a decentralized NFT marketplace built on the Internet Computer using Motoko and React.
 
-    http://www.apache.org/licenses/LICENSE-2.0
+The project allows users to:
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+- Mint NFTs
+- View owned NFTs
+- List NFTs for sale
+- Browse listed NFTs
+- Purchase NFTs
+- Transfer NFT ownership
+- Pay using the DANG token
 
-Here is the TL;DR version of the above licence:
-https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)
+---
 
-# To Install and Run the Project
+## Features
 
-1. start local dfx
+### NFT Minting
 
+Users can create NFTs by uploading an image and providing a name.
+
+### NFT Ownership
+
+Each NFT has an owner stored inside its own NFT canister.
+
+Functions:
+
+- getOwner()
+- transferOwnership()
+
+### Marketplace
+
+OpenD stores marketplace listings:
+
+- NFT owner
+- NFT price
+- Listed status
+
+Functions:
+
+- listItem()
+- getListedNFTs()
+- isListed()
+- getListedNFTPrice()
+
+### Purchase System
+
+Users can purchase NFTs using DANG tokens.
+
+Purchase flow:
+
+1. Buyer selects NFT
+2. DANG tokens transferred
+3. NFT ownership transferred
+4. Listing removed
+5. Ownership maps updated
+
+Function:
+
+- completePurchase()
+
+---
+
+## Technology Stack
+
+### Frontend
+
+- React
+- JavaScript
+- HTML
+- CSS
+
+### Backend
+
+- Motoko
+- Internet Computer
+- DFX
+
+### Canisters
+
+- OpenD Marketplace
+- NFT Canister
+- DANG Token Canister
+- Assets Canister
+
+---
+
+## Project Structure
+
+```text
+src/
+├── NFT/
+│   └── nft.mo
+│
+├── opend/
+│   └── main.mo
+│
+├── opend_assets/
+│   ├── assets/
+│   └── src/
+│       ├── components/
+│       │   ├── App.jsx
+│       │   ├── Gallery.jsx
+│       │   ├── Header.jsx
+│       │   ├── Item.jsx
+│       │   ├── Minter.jsx
+│       │   ├── Button.jsx
+│       │   ├── PriceLabel.jsx
+│       │   └── Footer.jsx
+│       └── index.jsx
 ```
+
+---
+
+## Main Motoko Functions
+
+### OpenD
+
+- mint()
+- getOwnedNFTs()
+- getListedNFTs()
+- listItem()
+- getOpenDCanisterID()
+- isListed()
+- getOriginalOwner()
+- getListedNFTPrice()
+- completePurchase()
+- whoAmI()
+
+### NFT
+
+- getName()
+- getOwner()
+- getAsset()
+- transferOwnership()
+- getCanisterID()
+
+---
+
+## Local Development
+
+Start local replica:
+
+```bash
 dfx start --clean
 ```
 
-2. Run NPM server
+Install dependencies:
 
+```bash
+npm install
 ```
+
+Deploy canisters:
+
+```bash
+dfx deploy
+```
+
+Run frontend:
+
+```bash
 npm start
 ```
 
-3. Deploy canisters
+Open:
 
-```
-dfx deploy --argument='("CryptoDunks #123", principal "bybly-atfan-o46jf-c7vfs-pkpil-muxqg-6ev7p-f4nkd-crx5p-2ndtb-yae", (vec {137; 80; 78; 71; 13; 10; 26; 10; 0; 0; 0; 13; 73; 72; 68; 82; 0; 0; 0; 10; 0; 0; 0; 10; 8; 6; 0; 0; 0; 141; 50; 207; 189; 0; 0; 0; 1; 115; 82; 71; 66; 0; 174; 206; 28; 233; 0; 0; 0; 68; 101; 88; 73; 102; 77; 77; 0; 42; 0; 0; 0; 8; 0; 1; 135; 105; 0; 4; 0; 0; 0; 1; 0; 0; 0; 26; 0; 0; 0; 0; 0; 3; 160; 1; 0; 3; 0; 0; 0; 1; 0; 1; 0; 0; 160; 2; 0; 4; 0; 0; 0; 1; 0; 0; 0; 10; 160; 3; 0; 4; 0; 0; 0; 1; 0; 0; 0; 10; 0; 0; 0; 0; 59; 120; 184; 245; 0; 0; 0; 113; 73; 68; 65; 84; 24; 25; 133; 143; 203; 13; 128; 48; 12; 67; 147; 94; 97; 30; 24; 0; 198; 134; 1; 96; 30; 56; 151; 56; 212; 85; 68; 17; 88; 106; 243; 241; 235; 39; 42; 183; 114; 137; 12; 106; 73; 236; 105; 98; 227; 152; 6; 193; 42; 114; 40; 214; 126; 50; 52; 8; 74; 183; 108; 158; 159; 243; 40; 253; 186; 75; 122; 131; 64; 0; 160; 192; 168; 109; 241; 47; 244; 154; 152; 112; 237; 159; 252; 105; 64; 95; 48; 61; 12; 3; 61; 167; 244; 38; 33; 43; 148; 96; 3; 71; 8; 102; 4; 43; 140; 164; 168; 250; 23; 219; 242; 38; 84; 91; 18; 112; 63; 0; 0; 0; 0; 73; 69; 78; 68; 174; 66; 96; 130;}))'
-```
-
-4. Head to localhost
-
-http://localhost:8080/
-
-# Minter Else HTML
-
-```
- <div className="minter-container">
-        <h3 className="Typography-root makeStyles-title-99 Typography-h3 form-Typography-gutterBottom">
-          Minted!
-        </h3>
-        <div className="horizontal-center">
-        </div>
-      </div>
-
+```text
+http://localhost:8080
 ```
 
-# Loader HTML
+---
 
-```
-<div className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-```
+## Useful Commands
 
-# Button HTML
+Generate declarations:
 
-```
-<div className="Chip-root makeStyles-chipBlue-108 Chip-clickable">
-            <span
-              onClick={}
-              className="form-Chip-label"
-            >
-              Sell
-            </span>
-            </div>
+```bash
+dfx generate
 ```
 
-# Price Input HTML
+Get canister id:
 
-```
-<input
-        placeholder="Price in DANG"
-        type="number"
-        className="price-input"
-        value={}
-        onChange={}
-      />
-```
-
-# Price Label HTML
-
-```
-<div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
-          <span className="disChip-label">23 DANG</span>
-        </div>
-```
-
-# Creating NFT for Testing
-
-1. Mint an NFT on the command line to get NFT into mapOfNFTs:
-
-```
-dfx canister call opend mint '(vec {137; 80; 78; 71; 13; 10; 26; 10; 0; 0; 0; 13; 73; 72; 68; 82; 0; 0; 0; 10; 0; 0; 0; 10; 8; 6; 0; 0; 0; 141; 50; 207; 189; 0; 0; 0; 1; 115; 82; 71; 66; 0; 174; 206; 28; 233; 0; 0; 0; 68; 101; 88; 73; 102; 77; 77; 0; 42; 0; 0; 0; 8; 0; 1; 135; 105; 0; 4; 0; 0; 0; 1; 0; 0; 0; 26; 0; 0; 0; 0; 0; 3; 160; 1; 0; 3; 0; 0; 0; 1; 0; 1; 0; 0; 160; 2; 0; 4; 0; 0; 0; 1; 0; 0; 0; 10; 160; 3; 0; 4; 0; 0; 0; 1; 0; 0; 0; 10; 0; 0; 0; 0; 59; 120; 184; 245; 0; 0; 0; 113; 73; 68; 65; 84; 24; 25; 133; 143; 203; 13; 128; 48; 12; 67; 147; 94; 97; 30; 24; 0; 198; 134; 1; 96; 30; 56; 151; 56; 212; 85; 68; 17; 88; 106; 243; 241; 235; 39; 42; 183; 114; 137; 12; 106; 73; 236; 105; 98; 227; 152; 6; 193; 42; 114; 40; 214; 126; 50; 52; 8; 74; 183; 108; 158; 159; 243; 40; 253; 186; 75; 122; 131; 64; 0; 160; 192; 168; 109; 241; 47; 244; 154; 152; 112; 237; 159; 252; 105; 64; 95; 48; 61; 12; 3; 61; 167; 244; 38; 33; 43; 148; 96; 3; 71; 8; 102; 4; 43; 140; 164; 168; 250; 23; 219; 242; 38; 84; 91; 18; 112; 63; 0; 0; 0; 0; 73; 69; 78; 68; 174; 66; 96; 130;}, "CryptoDunks #123")'
-```
-
-2. List the item into mapOfListings:
-
-```
-dfx canister call opend listItem '(principal "rno2w-sqaaa-aaaaa-aaacq-cai", 2)'
-```
-
-3. Get OpenD canister ID:
-
-```
+```bash
 dfx canister id opend
 ```
 
-4. Transfer NFT to OpenD:
+Check status:
 
+```bash
+dfx canister status opend
 ```
-dfx canister call <rno2w-sqaaa-aaaaa-aaacq-cai> transferOwnership '(principal "rrkah-fqaaa-aaaaa-aaaaq-cai ", true)'
-```
 
-# Conneting to the Token Canister
+---
 
-1. Copy over the token declarations folder
+## Token Integration
 
-2. Set the token canister id into the <REPLACE WITH TOKEN CANISTER ID>
 
-```
-const dangPrincipal = Principal.fromText("<REPLACE WITH TOKEN CANISTER ID>");
-```
+OpenD integrates the DANG token canister for NFT marketplace payments.
+
+The token interface currently includes:
+
+- balanceOf()
+- getSymbol()
+- payOut()
+- transfer()
+---
+
+## Built With
+
+- Internet Computer
+- Motoko
+- React
+- JavaScript
+- DFX
+- Git
+- GitHub
